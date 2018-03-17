@@ -6,12 +6,19 @@ const urlsToCache = [
 
 ];
 
-self.addEventListener("install", event => {
-    const preLoaded = caches.open(CACHE_NAME)
-        .then(cache => cache.addAll(urlsToCache))
-    event.waitUntil(preLoaded);
-    console.log("PWA INTALADA")
-});
+self.addEventListener('install', e => {
+    console.log('Evento: SW Instalado')
+    e.waitUntil(
+      caches.open(CACHE_NAME)
+        .then(cache => {
+          console.log('Archivos en cache')
+          return cache.addAll(urlsToCache)
+          .then( () => self.skipWaiting() )
+          //skipWaiting forza al SW a activarse
+        })
+        .catch(err => console.log('Falló registro de cache', err) )
+    )
+  })
 
 
 self.addEventListener("activate",e =>{
@@ -37,10 +44,27 @@ self.addEventListener("activate",e =>{
 })
 
 
-self.addEventListener("fetch", event => {
-    console.log('[ServiceWorker] Fetch', event.request.url)
-    const response = caches.match(event.request)
-        .then(match => match || fetch(event.request));
-    event.respondWith(response);
+// self.addEventListener("fetch", event => {
+//     const response = caches.match(event.request)
+//         .then(match => match || fetch(event.request));
+//     event.respondWith(response);
 
-});
+// });
+
+self.addEventListener('fetch', e => {
+    console.log('Evento: SW Recuperando')
+  
+    e.respondWith(
+      //Miramos si la petición coincide con algún elemento del cache
+      caches.match(e.request)
+      .then(res => {
+          console.log('Recuperando cache')
+          if ( res ) {
+            //Si coincide lo retornamos del cache
+            return res
+          }
+          //Sino, lo solicitamos a la red
+          return fetch(e.request)
+        })
+      )
+  })
