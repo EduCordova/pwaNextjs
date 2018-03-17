@@ -1,10 +1,10 @@
 {
   "name": "create-next-example-app",
   "scripts": {
-    "dev": "node server.js",
+    "dev": "node server.js -p $PORT",
     "build": "next build",
-    "start": "next start"
-  
+    "start": "node server.js -p $PORT",
+    "heroku-postbuild": "npm run build" 
   },
   "dependencies": {
     "next": "^5.0.1-canary.16",
