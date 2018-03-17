@@ -1,8 +1,9 @@
 const { createServer } = require('http');
 const { parse } = require('url');
 const { createReadStream } = require('fs');
-const next = require('next');
 
+const next = require('next');
+const port = parseInt(process.env.PORT, 10) || 3000
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
@@ -18,8 +19,8 @@ app.prepare().then(() => {
     } else {
       handle(req, res, parsedUrl);
     }
-  }).listen(3001, err => {
+  }).listen(port, err => {
     if (err) throw err;
-    console.log('> Ready nau 3000');
+    console.log('> Ready nau '+port);
   });
 });
