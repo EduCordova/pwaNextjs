@@ -10,7 +10,6 @@ const Head = (props) => (
 
     <title>{props.title || ''}</title>
     <meta name="description" content={props.description || defaultDescription} />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="mask-icon" href="/static/favicon-mask.svg" color="#49B882" />
     <link rel="icon" href="/static/favicon.ico" />
     <meta property="og:url" content={props.url || defaultOGURL} />
@@ -20,6 +19,7 @@ const Head = (props) => (
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <link rel="manifest" href="/static/manifest.json" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
   </NextHead>
 )
 

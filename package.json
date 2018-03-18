@@ -4,11 +4,14 @@
     "dev": "node server.js -p $PORT",
     "build": "next build",
     "start": "node server.js -p $PORT",
-    "heroku-postbuild": "npm run build" 
+    "heroku-postbuild": "npm run build"
   },
   "dependencies": {
+    "material-ui": "^1.0.0-beta.38",
+    "material-ui-icons": "^1.0.0-beta.36",
     "next": "^4.2.3",
     "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "react-dom": "^16.2.0",
+    "sw-precache-webpack-plugin": "^0.11.5"
   }
 }

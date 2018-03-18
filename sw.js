@@ -2,6 +2,11 @@ const CACHE_NAME = "simple-cache-v1";
 const urlsToCache = [
     "/",
     "/about",
+    "https://fonts.googleapis.com/css?family=Roboto:300,400,500",
+    "https://fonts.googleapis.com/icon?family=Material+Icons",
+    
+
+
   
 
 ];
@@ -44,27 +49,27 @@ self.addEventListener("activate",e =>{
 })
 
 
-// self.addEventListener("fetch", event => {
-//     const response = caches.match(event.request)
-//         .then(match => match || fetch(event.request));
-//     event.respondWith(response);
+self.addEventListener("fetch", event => {
+    const response = caches.match(event.request)
+        .then(match => match || fetch(event.request));
+    event.respondWith(response);
 
-// });
+});
 
-self.addEventListener('fetch', e => {
-    console.log('Evento: SW Recuperando')
+// self.addEventListener('fetch', e => {
+//     console.log('Evento: SW Recuperando')
   
-    e.respondWith(
-      //Miramos si la petición coincide con algún elemento del cache
-      caches.match(e.request)
-      .then(res => {
-          console.log('Recuperando cache')
-          if ( res ) {
-            //Si coincide lo retornamos del cache
-            return res
-          }
-          //Sino, lo solicitamos a la red
-          return fetch(e.request)
-        })
-      )
-  })
+//     e.respondWith(
+//       //Miramos si la petición coincide con algún elemento del cache
+//       caches.match(e.request)
+//       .then(res => {
+//           console.log('Recuperando cache')
+//           if ( res ) {
+//             //Si coincide lo retornamos del cache
+//             return res
+//           }
+//           //Sino, lo solicitamos a la red
+//           return fetch(e.request)
+//         })
+//       )
+//   })
