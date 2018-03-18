@@ -6,10 +6,11 @@ import PropTypes from 'prop-types';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
+import OnePost from '../components/mypost';
 
 import withRoot from '../src/withRoot';
 import { withStyles } from 'material-ui/styles';
-
+import fetch from 'isomorphic-unfetch'
 
 
 const styles = theme => ({
@@ -43,7 +44,7 @@ componentDidMount(){
 
 
   render(){
-    const {classes} = this.props
+    const {classes,shows} = this.props
     return(
       <div>
         <Head title="home"/>
@@ -54,6 +55,15 @@ componentDidMount(){
           Pagina 1 Home
         </Typography>
         
+        {shows.map((i,key)=>
+
+            <div key={key}>
+                  <OnePost data={i}/>
+
+            </div>
+        )}
+
+
         <Button onClick={linkBut} variant="raised" color="primary" className={classes.button}>
         ABOUT
       </Button>
@@ -62,6 +72,14 @@ componentDidMount(){
 
       </div>
     )
+  }
+}
+
+Index.getInitialProps = async function () {
+  const res = await fetch('https://rest-mbcode.herokuapp.com/api/mypost')
+  const data = await res.json()
+  return {
+    shows: data
   }
 }
 

@@ -19,7 +19,8 @@ class MyDocument extends Document {
             }
           />
           {/* PWA primary color */}
-          <meta name="theme-color" content={pageContext.theme.palette.primary[500]} />
+          <meta name="theme-color" content="#212121"/>
+          <meta name="google" content="notranslate" />
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"

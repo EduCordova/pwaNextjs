@@ -1,9 +1,9 @@
 {
-    "name": "Progressive Web App Demo",
+    "name": "Demo PWA + NextJS",
     "short_name": "PWA Demo",
     "description": "Demo de aplicación web progresiva.",
     "background_color": "#F7DF1E",
-    "theme_color": "#000",
+    "theme_color": "#212121",
     "orientation": "portrait",
     "display": "standalone",
     "start_url": "/",

@@ -4,11 +4,7 @@ const urlsToCache = [
     "/about",
     "https://fonts.googleapis.com/css?family=Roboto:300,400,500",
     "https://fonts.googleapis.com/icon?family=Material+Icons",
-    
-
-
-  
-
+    'https://rest-mbcode.herokuapp.com/api/mypost'
 ];
 
 self.addEventListener('install', e => {
